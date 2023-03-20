@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+/*@Setter*/
 @Getter
 public class HelloLombok {
     private final String hello;
@@ -18,7 +19,6 @@ public class HelloLombok {
         this.lombok = lombok;
     }
      */
-
     public static void main(String[] args){
         HelloLombok helloLombok = new HelloLombok("헬로",5);
         System.out.println(helloLombok.getHello());

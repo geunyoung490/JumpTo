@@ -3,18 +3,16 @@ package com.example.demo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.List;
 
+import com.example.demo.answer.Answer;
+import com.example.demo.question.Question;
+import com.example.demo.question.QuestionRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.swing.text.html.Option;
-import java.time.LocalDateTime;
-import java.util.Queue;
 
 @SpringBootTest
 class DemoApplicationTests {

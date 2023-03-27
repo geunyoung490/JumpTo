@@ -1,7 +1,8 @@
-package com.example.demo;
+package com.example.demo.answer;
 
 import java.time.LocalDateTime;
 
+import com.example.demo.question.Question;
 import jakarta.persistence.*;
 
 import lombok.Getter;

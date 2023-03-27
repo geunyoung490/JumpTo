@@ -1,6 +1,8 @@
-package com.example.demo;
+package com.example.demo.question;
 
 import java.util.List;
+
+import com.example.demo.question.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface QuestionRepository extends JpaRepository<Question,Integer>{

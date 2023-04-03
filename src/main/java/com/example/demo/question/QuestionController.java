@@ -2,7 +2,9 @@ package com.example.demo.question;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,12 +32,15 @@ public class QuestionController {
         return "question_detail";
     }
     @GetMapping("/create")
-    public String questionCreate(){
-        return "question_form";
+    public String questionCreate(QuestionForm questionForm){
+        return "question_form";//th:object에 의해 QuestionForm 객체가 필요
     }
     @PostMapping("/create")
-    public String questionCreate(@RequestParam String subject, @RequestParam String content){
-        this.questionService.create(subject,content);
-        return "redirect:/question/list";// 질문 저장 후 질물목록으로 이동.
+    public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "question_form";
+        }
+        this.questionService.create(questionForm.getSubject(), questionForm.getContent());
+        return "redirect:/question/list";// 질문 저장 후 질문목록으로 이동.
     }
 }

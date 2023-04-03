@@ -2,6 +2,7 @@ package com.example.demo.question;
 
 import java.util.List;
 
+import com.example.demo.answer.AnswerForm;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,7 +27,7 @@ public class QuestionController {
         return "question_list";
     }
     @GetMapping(value = "/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id){
+    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm){
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question",question);
         return "question_detail";

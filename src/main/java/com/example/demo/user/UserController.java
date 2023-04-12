@@ -30,8 +30,13 @@ public class UserController {
             bindingResult.rejectValue("password2", "passwordInCorrect", "2개의 패스워드가 일치하지 않습니다.");
             return "signup_form";
         }
-
-        userService.create(userCreateForm.getUsername(), userCreateForm.getEmail(), userCreateForm.getPassword1());
+        try {
+            userService.create(userCreateForm.getUsername(), userCreateForm.getEmail(), userCreateForm.getPassword1());
+        }catch (Exception e){
+            e.printStackTrace();
+            bindingResult.rejectValue("signupFailed", "이미 등록된 사용자입니다." );
+            return "signup_form";
+        }
 
         return "redirect:/";
     }

@@ -4,13 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.example.demo.answer.Answer;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import com.example.demo.user.SiteUser;
+import jakarta.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,5 +27,8 @@ public class Question {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList; //Answer entity 객체로 구성된 answerList 를 속성으로 추가 question.getAnswerList()
+
+    @ManyToOne
+    private SiteUser author;
 
 }

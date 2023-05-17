@@ -46,7 +46,7 @@ public class QuestionController {
         if(bindingResult.hasErrors()){
             return "question_form";
         }
-        SiteUser siteUser= this.userService.getUser(principal.getName())
+        SiteUser siteUser= this.userService.getUser(principal.getName());
         this.questionService.create(questionForm.getSubject(), questionForm.getContent(), siteUser);
         return "redirect:/question/list";// 질문 저장 후 질문목록으로 이동.
     }

@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.demo.answer.AnswerForm;
 import com.example.demo.user.SiteUser;
 import com.example.demo.user.UserService;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -80,5 +81,15 @@ public class QuestionController {
         }
         this.questionService.modify(question,questionForm.getSubject(),questionForm.getContent());
         return String.format("redirect:/question/detail/%s",id);
+    }
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/delete/{id}")
+    public String questionDelete(Principal principal, @PathVariable("id") Integer id){
+        Question question = this.questionService.getQuestion(id);
+        if(!question.getAuthor().getUsername().equals(principal.getName())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
+        }
+        this.questionService.delete(question);
+        return "redirect:/";
     }
 }
